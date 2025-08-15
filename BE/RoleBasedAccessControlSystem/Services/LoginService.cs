@@ -11,34 +11,30 @@ namespace RoleBasedAccessControlSystem.Services
     public class LoginService : ILoginService
     {
         private IConfiguration _config;
-        private List<User> users = new List<User>
-        {
-            new User{ Username="admin", Password="admin123", Role="Admin"},
-            new User{ Username="editor", Password="editor123", Role="Editor"},
-            new User{ Username="viewer", Password="viewer123", Role="Viewer"},
-        };
+        private IUserRolesService _userRolesService;
 
-        public LoginService(IConfiguration config)
+        public LoginService(IConfiguration config, IUserRolesService userRolesService)
         {
             _config = config;
+            _userRolesService = userRolesService;
         }
 
-        public LoginResponseDto UserAuthenticate(User user)
+        public LoginResponseDto UserAuthenticate(LoginRequest user)
         {
             if (user == null || string.IsNullOrEmpty(user.Username) || string.IsNullOrEmpty(user.Password))
             {
-                return new LoginResponseDto { IsSuccess = false, Token = null, Message = "User credentials are Empty" }; 
+                return new LoginResponseDto { IsSuccess = false, Token = null, Message = "User credentials are Empty" };
             }
-            else
-            {
-                var authenticatedUser = users.FirstOrDefault(u => u.Username == user.Username && u.Password == user.Password);
 
-                if (authenticatedUser == null)
-                    return new LoginResponseDto { IsSuccess = false, Token = null, Message = "Invalid user credentials" }; //Invalid user credentials
+            List<User> users = _userRolesService.GetAllUsers(); // Fetch all users and roles
+            var authenticatedUser = users.FirstOrDefault(u => u.Username == user.Username && u.Password == user.Password);
 
-                var token = GenerateJwtToken(authenticatedUser); // Generate JWT token for the user
-                return new LoginResponseDto { IsSuccess = true, Token = token, Message = "Login successfull", Role = authenticatedUser.Role }; // User authenticated successfully
-            }
+            if (authenticatedUser == null)
+                return new LoginResponseDto { IsSuccess = false, Token = null, Message = "Invalid user credentials", UserData = null }; //Invalid user credentials
+
+            var token = GenerateJwtToken(authenticatedUser); // Generate JWT token for the user
+            return new LoginResponseDto { IsSuccess = true, Token = token, Message = "Login successfull", UserData = authenticatedUser }; // User authenticated successfully
+
         }
 
         public string GenerateJwtToken(User user)
@@ -61,6 +57,6 @@ namespace RoleBasedAccessControlSystem.Services
             );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
-        }      
+        }
     }
 }

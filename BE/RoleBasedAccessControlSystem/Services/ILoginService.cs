@@ -5,7 +5,7 @@ namespace RoleBasedAccessControlSystem.Services
 {
     public interface ILoginService
     {
-        LoginResponseDto UserAuthenticate(User user);
+        LoginResponseDto UserAuthenticate(LoginRequest user);
 
         string GenerateJwtToken(User user);
     }
