@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using RoleBasedAccessControlSystem.Models;
+using RoleBasedAccessControlSystem.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -9,27 +11,52 @@ namespace RoleBasedAccessControlSystem.Controllers
     [ApiController]
     public class UserRolesController : ControllerBase
     {
-        public UserRolesController()
+        IUserRolesService _userRolesService;
+        public UserRolesController(IUserRolesService userRolesService)
         {
-            // Constructor logic can be added here if needed
+            _userRolesService = userRolesService;
         }
 
         [HttpGet]
-        [Route("GetUserRoles")]
+        [Route("GetUser")]
         [Authorize(Roles = "Admin,Editor,Viewer")]
         public IActionResult GetUsersAndRoles()
         {
-            // This method can be used to retrieve user roles
-            return Ok("List of user roles");
+            //IActionResult result = null;
+
+            var result = _userRolesService.GetAllUsers();
+
+            return Ok(result);
         }
 
         [HttpPost]
-        [Route("AddUserRoles")]
+        [Route("AddUser")]
         [Authorize(Roles = "Admin")]
-        public IActionResult AddUsersAndRoles()
+        public IActionResult AddUsersAndRoles([FromBody] User user)
         {
+            _userRolesService.AddUser(user);
             // This method can be used to retrieve user roles
-            return Ok("roles added.");
+            return Ok("user added.");
+        }
+
+        [HttpPut]
+        [Route("UpdateUser")]
+        [Authorize(Roles = "Admin")]
+        public IActionResult UpdateUsersAndRoles([FromBody] User user)
+        {
+            _userRolesService.UpdateUser(user);
+            // This method can be used to retrieve user roles
+            return Ok("user updated.");
+        }
+
+        [HttpDelete]
+        [Route("DeleteUser/{userId:int}")]
+        [Authorize(Roles = "Admin")]
+        public IActionResult DeleteUsersAndRoles(int userId)
+        {
+            _userRolesService.DeleteUser(userId);
+            // This method can be used to retrieve user roles
+            return Ok("user deleted.");
         }
     }
 }

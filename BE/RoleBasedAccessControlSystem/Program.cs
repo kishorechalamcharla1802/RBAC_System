@@ -63,6 +63,7 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddAuthorization();
 builder.Services.AddScoped<ILoginService, LoginService>();
+builder.Services.AddScoped<IUserRolesService, UserRolesService>();
 
 var app = builder.Build();
 
