@@ -1,20 +1,25 @@
+import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MaterialDependenciesModule } from '../../../material-dependencies/material-dependencies.module';
 import { DataService } from '../../data.service';
 import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule, MaterialDependenciesModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
 export class LoginComponent implements OnInit {
   username = '';
   password = '';
+  role = '';
+  payload: User = {} as User;
+  showRegister: boolean = false;
 
   constructor(
     private http: HttpClient,
@@ -45,6 +50,26 @@ export class LoginComponent implements OnInit {
         },
         error: (err) => {
           alert(err.error.message || 'Login failed');
+        },
+      });
+  }
+
+  register() {
+    this.payload.username = this.username;
+    this.payload.password = this.password;
+    this.payload.role = this.role;
+    this.http
+      .post<User>('https://localhost:7148/api/UserRoles/AddUser', this.payload)
+      .subscribe({
+        next: (res) => {
+          this.showRegister = false;
+          this.username = '';
+          this.password = '';
+          this.role = '';
+          alert('User registered successfully');
+        },
+        error: (err) => {
+          alert('Register failed');
         },
       });
   }

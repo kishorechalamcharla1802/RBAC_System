@@ -1,6 +1,7 @@
 .table-container {
     padding: 16px;
-    /* overflow-x: auto; */
+    font-family: 'Roboto', sans-serif;
+    border: 1px solid #e0e0e0;
 }
 
 table {

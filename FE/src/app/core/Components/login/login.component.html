@@ -1,8 +1,28 @@
-<div class="login-container">
-    <h2>Login</h2>
-    <form (ngSubmit)="login()">
-        <input [(ngModel)]="username" name="username" placeholder="Username" />
-        <input [(ngModel)]="password" name="password" type="password" placeholder="Password" />
-        <button type="submit">Login</button>
-    </form>
+<div class="container">
+    <div *ngIf="!showRegister" class="login-container">
+        <h2>Login</h2>
+        <form (ngSubmit)="login()">
+            <input [(ngModel)]="username" name="username" placeholder="Username" />
+            <input [(ngModel)]="password" name="password" type="password" placeholder="Password" />
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <div *ngIf="!showRegister" class="user-text">
+        <p>New here? <a (click)="showRegister = true">Register now</a> to get started!</p>
+    </div>
+
+    <div *ngIf="showRegister" class="login-container">
+        <h2>Register User</h2>
+        <form (ngSubmit)="register()">
+            <input [(ngModel)]="username" name="username" placeholder="Username" />
+            <input [(ngModel)]="password" name="password" type="password" placeholder="Password" />
+            <input [(ngModel)]="role" name="role" placeholder="Role" />
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <div *ngIf="showRegister" class="user-text">
+        <p>Already have an account? <a (click)="showRegister = false">Login here</a></p>
+    </div>
 </div>

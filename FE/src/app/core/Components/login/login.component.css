@@ -1,7 +1,82 @@
+.container {
+  height: calc(100vh - 95px - 110px);
+}
+
+.user-text {
+  text-align: center;
+  margin-top: 20px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  color: #555;
+}
+
+.user-text p {
+  margin: 5px 0;
+}
+
+.user-text a {
+  color: #3f51b5;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.user-text a:hover {
+  color: #303f9f;
+  text-decoration: underline;
+}
+
+.user-text button {
+  margin-top: 10px;
+}
+
+
 .login-container {
-  width: 500px;
-  margin: 0 auto;
+  width: 350px;
+  margin: 55px auto;
   padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  background-color: #fff;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+.login-container h2 {
+  margin-bottom: 20px;
+  color: #3f51b5;
+}
+
+.login-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.login-container input {
+  padding: 10px;
+  font-size: 14px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  outline: none;
+  transition: border 0.3s;
+}
+
+.login-container input:focus {
+  border-color: #3f51b5;
+}
+
+.login-container button {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #3f51b5;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-container button:hover {
+  background-color: #303f9f;
 }
