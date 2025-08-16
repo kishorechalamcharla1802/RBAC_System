@@ -24,7 +24,7 @@ namespace RoleBasedAccessControlSystem.Controllers
         {
             //IActionResult result = null;
 
-            var result = _userRolesService.GetAllUsers();
+            var result = _userRolesService.GetAllUsersInfo();
 
             return Ok(result);
         }
@@ -42,7 +42,7 @@ namespace RoleBasedAccessControlSystem.Controllers
         [HttpPut]
         [Route("UpdateUser")]
         [Authorize(Roles = "Admin")]
-        public IActionResult UpdateUsersAndRoles([FromBody] User user)
+        public IActionResult UpdateUsersAndRoles([FromBody] UserInfo user)
         {
             _userRolesService.UpdateUser(user);
             // This method can be used to retrieve user roles

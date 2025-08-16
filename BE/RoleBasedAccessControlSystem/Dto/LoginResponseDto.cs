@@ -7,6 +7,6 @@ namespace RoleBasedAccessControlSystem.Dto
         public bool IsSuccess { get; set; }
         public string Token { get; set; }
         public string Message { get; set; }
-        public User UserData { get; set; }
+        public UserInfo UserData { get; set; }
     }
 }

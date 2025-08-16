@@ -28,12 +28,17 @@ namespace RoleBasedAccessControlSystem.Services
 
             List<User> users = _userRolesService.GetAllUsers(); // Fetch all users and roles
             var authenticatedUser = users.FirstOrDefault(u => u.Username == user.Username && u.Password == user.Password);
-
+            var userInfo = new UserInfo
+            {
+                Id = authenticatedUser.Id,
+                Username = authenticatedUser.Username,
+                Role = authenticatedUser.Role
+            };
             if (authenticatedUser == null)
                 return new LoginResponseDto { IsSuccess = false, Token = null, Message = "Invalid user credentials", UserData = null }; //Invalid user credentials
 
             var token = GenerateJwtToken(authenticatedUser); // Generate JWT token for the user
-            return new LoginResponseDto { IsSuccess = true, Token = token, Message = "Login successfull", UserData = authenticatedUser }; // User authenticated successfully
+            return new LoginResponseDto { IsSuccess = true, Token = token, Message = "Login successfull", UserData =  userInfo}; // User authenticated successfully
 
         }
 

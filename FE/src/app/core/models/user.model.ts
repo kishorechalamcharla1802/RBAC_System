@@ -1,6 +1,9 @@
-export interface User {
+export interface UserInfo {
   id: number;
   username: string;
-  password: string;
   role: string;
+}
+
+export interface User extends UserInfo {
+  password: string;
 }

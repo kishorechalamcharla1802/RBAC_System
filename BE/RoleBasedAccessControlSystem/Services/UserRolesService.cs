@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using RoleBasedAccessControlSystem.Models;
 using System.Text.Json;
 
@@ -9,13 +8,19 @@ namespace RoleBasedAccessControlSystem.Services
     {
         private readonly string _filePath = "users.json";
 
-        public List<User> GetAllUsers()
+        public List<UserInfo> GetAllUsersInfo()
         {
-            if (!File.Exists(_filePath)) return new List<User>();
+            if (!File.Exists(_filePath)) return new List<UserInfo>();
 
             var json = File.ReadAllText(_filePath);
             var users = JsonSerializer.Deserialize<List<User>>(json) ?? new List<User>();
-            return users;
+            var usersList = users.Select(u => new UserInfo
+            {
+                Id = u.Id,
+                Username = u.Username,
+                Role = u.Role
+            }).ToList();
+            return usersList;
         }
 
         public void AddUser(User user)
@@ -27,14 +32,13 @@ namespace RoleBasedAccessControlSystem.Services
             SaveUsers(users);
         }
 
-        public void UpdateUser(User user)
+        public void UpdateUser(UserInfo user)
         {
             var users = GetAllUsers();
             User? existingUser = users.FirstOrDefault(u => u.Id == user.Id);
             if (existingUser != null)
             {
                 existingUser.Username = user.Username;
-                existingUser.Password = user.Password;
                 existingUser.Role = user.Role;
                 SaveUsers(users);
             }
@@ -54,6 +58,15 @@ namespace RoleBasedAccessControlSystem.Services
                 SaveUsers(users);
             }
             
+        }
+
+        public List<User> GetAllUsers()
+        {
+            if (!File.Exists(_filePath)) return new List<User>();
+
+            var json = File.ReadAllText(_filePath);
+            var users = JsonSerializer.Deserialize<List<User>>(json) ?? new List<User>();
+            return users;
         }
 
         private void SaveUsers(List<User> users)
