@@ -22,7 +22,6 @@ namespace RoleBasedAccessControlSystem.Controllers
         [Authorize(Roles = "Admin,Editor,Viewer")]
         public IActionResult GetUsersAndRoles()
         {
-            //IActionResult result = null;
 
             var result = _userRolesService.GetAllUsersInfo();
 
@@ -35,8 +34,7 @@ namespace RoleBasedAccessControlSystem.Controllers
         public IActionResult AddUsersAndRoles([FromBody] User user)
         {
             _userRolesService.AddUser(user);
-            // This method can be used to retrieve user roles
-            return Ok("user added.");
+            return Ok();
         }
 
         [HttpPut]
@@ -45,8 +43,7 @@ namespace RoleBasedAccessControlSystem.Controllers
         public IActionResult UpdateUsersAndRoles([FromBody] UserInfo user)
         {
             _userRolesService.UpdateUser(user);
-            // This method can be used to retrieve user roles
-            return Ok("user updated.");
+            return Ok();
         }
 
         [HttpDelete]
@@ -55,8 +52,7 @@ namespace RoleBasedAccessControlSystem.Controllers
         public IActionResult DeleteUsersAndRoles(int userId)
         {
             _userRolesService.DeleteUser(userId);
-            // This method can be used to retrieve user roles
-            return Ok("user deleted.");
+            return Ok();
         }
     }
 }

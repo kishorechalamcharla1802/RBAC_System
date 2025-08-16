@@ -1,26 +1,20 @@
 [
   {
+    "Password": "admin123",
     "Id": 1,
     "Username": "admin",
-    "Password": "admin123",
     "Role": "Admin"
   },
   {
+    "Password": "editor123",
     "Id": 2,
     "Username": "editor",
-    "Password": "editor123",
     "Role": "Editor"
   },
   {
+    "Password": "viewer123",
     "Id": 3,
     "Username": "viewer",
-    "Password": "viewer123",
     "Role": "Viewer"
-  },
-  {
-    "Id": 4,
-    "Username": "kishore",
-    "Password": "kishore@4",
-    "Role": "King"
   }
 ]
