@@ -61,6 +61,16 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngularDevClient", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 builder.Services.AddAuthorization();
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IUserRolesService, UserRolesService>();
@@ -75,6 +85,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowAngularDevClient");
 
 app.UseAuthentication();
 

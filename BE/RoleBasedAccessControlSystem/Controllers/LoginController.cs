@@ -18,6 +18,7 @@ namespace RoleBasedAccessControlSystem.Controllers
         }
 
         [HttpPost]
+        [Route("LoginUser")]
         public IActionResult LoginUser([FromBody] LoginRequest user)
         {
             IActionResult response = Unauthorized();
