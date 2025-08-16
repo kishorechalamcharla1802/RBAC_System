@@ -1,0 +1,27 @@
+.toolbar {
+    background-color: #6c429c;
+    color: white;
+    height: 50px;
+}
+
+.toolbar-row {
+    padding: 10px;
+}
+
+.flex-spacer {
+    flex: 1 1 auto;
+}
+
+.logo {
+    height: 30px;
+    background: transparent;
+    cursor: pointer;
+}
+
+.nav-link {
+    cursor: pointer;
+    font-size: 14px;
+    color: white;
+    /* matches toolbar text color */
+    text-decoration: none;
+}

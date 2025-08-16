@@ -1,0 +1,18 @@
+<mat-toolbar class="toolbar">
+    <mat-toolbar-row class="toolbar-row mat-elevation-z1" fxLayout="row" fxLayoutAlign="start center"
+        fxLayoutGap="20px">
+        <img src="assets/logo.png" alt="Logo" class="logo" (click)="gotoDashboard()">
+        <span>RBAC System</span>
+        <div *ngIf="showDetails" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+            <span *ngIf="userData?.role == 'Admin'" routerLink="/users" class="nav-link">Users</span>
+            <span routerLink="/content" class="nav-link">Content</span>
+        </div>
+
+        <span class="flex-spacer"></span>
+
+        <div *ngIf="showDetails" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+            <button type="button" class="btn btn-primary" (click)="logout()">Logout</button>
+            <span>{{userData?.role}}</span>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>
