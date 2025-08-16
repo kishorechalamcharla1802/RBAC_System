@@ -30,7 +30,6 @@ namespace RoleBasedAccessControlSystem.Controllers
 
         [HttpPost]
         [Route("AddUser")]
-        [Authorize(Roles = "Admin")]
         public IActionResult AddUsersAndRoles([FromBody] User user)
         {
             _userRolesService.AddUser(user);
