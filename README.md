@@ -41,7 +41,7 @@ This application is built with **Angular** on the frontend and **ASP.NET Core We
 ## Prerequisites
 
 - [Node.js](https://nodejs.org/) (v18.20.8)
-- [Angular CLI](https://angular.io/cli) (v17.3.17)
+- [Angular CLI](https://angular.io/cli) (v17.3.17) command -(npm install -g @angular/cli@17.3.17)
 - [.NET SDK](https://dotnet.microsoft.com/download) (v8.0.413)
 - [Visual Studio 2022](https://visualstudio.microsoft.com/)
 - [Visual studio Code](https://code.visualstudio.com/download)
