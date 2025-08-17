@@ -19,7 +19,7 @@ namespace RoleBasedAccessControlSystem.Controllers
 
         [HttpGet]
         [Route("GetUser")]
-        [Authorize(Roles = "Admin,Editor,Viewer")]
+        [Authorize(Roles = "Admin")]
         public IActionResult GetUsersAndRoles()
         {
 
@@ -50,6 +50,10 @@ namespace RoleBasedAccessControlSystem.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult DeleteUsersAndRoles(int userId)
         {
+            if (userId <= 0)
+            {
+                return BadRequest("Invalid user ID.");
+            }
             _userRolesService.DeleteUser(userId);
             return Ok();
         }

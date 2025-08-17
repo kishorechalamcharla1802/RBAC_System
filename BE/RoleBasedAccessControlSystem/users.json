@@ -16,11 +16,5 @@
     "Id": 3,
     "Username": "viewer",
     "Role": "Viewer"
-  },
-  {
-    "Password": "kishore123",
-    "Id": 4,
-    "Username": "kishore",
-    "Role": "Admin"
   }
 ]

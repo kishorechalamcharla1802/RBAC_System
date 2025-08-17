@@ -1,0 +1,17 @@
+[
+  {
+    "StepNo": 1,
+    "Description": "Clone repository",
+    "Command": "git clone \u003Curl\u003E"
+  },
+  {
+    "StepNo": 2,
+    "Description": "Install dependencies",
+    "Command": "npm install"
+  },
+  {
+    "StepNo": 3,
+    "Description": "Run applicatio",
+    "Command": "ng serve --open"
+  }
+]
