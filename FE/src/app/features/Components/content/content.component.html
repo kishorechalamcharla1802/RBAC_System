@@ -1,0 +1,64 @@
+<div class="content-container">
+    <div class="table-container">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <ng-container matColumnDef="stepNo">
+                <th mat-header-cell *matHeaderCellDef> Step No </th>
+                <td mat-cell *matCellDef="let element">{{element.stepNo}}</td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="description">
+                <th mat-header-cell *matHeaderCellDef> Description </th>
+                <td mat-cell *matCellDef="let element; let i = index">
+                    <ng-container *ngIf="!element.editing; else editDescription">
+                        {{element.description}}
+                    </ng-container>
+                    <ng-template #editDescription>
+                        <input matInput [(ngModel)]="element.description">
+                    </ng-template>
+                </td>
+            </ng-container>
+
+            <!-- Role Column -->
+            <ng-container matColumnDef="command">
+                <th mat-header-cell *matHeaderCellDef> Command/Info </th>
+                <td mat-cell *matCellDef="let element; let i = index">
+                    <ng-container *ngIf="!element.editing; else editCommand">
+                        {{element.command}}
+                    </ng-container>
+                    <ng-template #editCommand>
+                        <input matInput [(ngModel)]="element.command">
+                    </ng-template>
+                </td>
+            </ng-container>
+
+            <!-- Action Buttons -->
+            <ng-container *ngIf="canEdit" matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell *matCellDef="let element; let i = index">
+                    <ng-container>
+                        <button mat-icon-button *ngIf="!element.editing" (click)="editSetupStep(element)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button *ngIf="element.editing" mat-icon-button (click)="updateSetupStep(element)">
+                            <mat-icon>save</mat-icon>
+                        </button>
+                        <button mat-icon-button color="warn" (click)="deleteSetupStep(element)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                        <button mat-icon-button *ngIf="element.editing" (click)="cancelEdit(element)">
+                            <mat-icon>cancel</mat-icon>
+                        </button>
+                    </ng-container>
+                </td>
+            </ng-container>
+
+            <!-- Header and Row declarations -->
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+    <div *ngIf="canEdit" class="add-step-container">
+        <button type="button" class="btn btn-primary" (click)="addSetupStep()">Add Step</button>
+    </div>
+</div>

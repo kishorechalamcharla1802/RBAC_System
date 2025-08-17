@@ -1,8 +1,12 @@
 .table-container {
     width: 100%;
-    margin: 30px auto;
+    padding: 10px;
     font-family: 'Roboto', sans-serif;
     border: 1px solid #e0e0e0;
+}
+
+table {
+    border-radius: 5px;
 }
 
 .mat-header-cell {
@@ -17,8 +21,4 @@
 
 .mat-row:hover .mat-cell {
     background-color: #e3f2fd;
-}
-
-mat-select {
-    width: 150px;
 }

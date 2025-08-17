@@ -93,3 +93,9 @@
 .login-container button:hover {
   background-color: #303f9f;
 }
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 2px;
+}

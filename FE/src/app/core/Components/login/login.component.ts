@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MaterialDependenciesModule } from '../../../material-dependencies/material-dependencies.module';
 import { DataService } from '../../data.service';
@@ -45,8 +45,8 @@ export class LoginComponent implements OnInit {
       .subscribe({
         next: (res) => {
           localStorage.setItem('user', JSON.stringify(res.userData));
-          this.dataService.setUserInfo(res.userData);
           localStorage.setItem('token', res.token);
+          this.dataService.setUserInfo(res.userData);
           this.router.navigate(['/dashboard']);
         },
         error: (err) => {
@@ -55,7 +55,13 @@ export class LoginComponent implements OnInit {
       });
   }
 
-  register() {
+  register(form: NgForm) {
+    if (form.invalid) {
+      Object.values(form.controls).forEach((control) => {
+        control.markAsTouched();
+      });
+      return;
+    }
     this.payload.username = this.username;
     this.payload.password = this.password;
     this.payload.role = this.role;

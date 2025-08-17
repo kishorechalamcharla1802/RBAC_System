@@ -1,0 +1,35 @@
+.content-container {
+    height: calc(100vh - 128px);
+}
+
+.table-container {
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    border: 1px solid #e0e0e0;
+    height: calc(100vh - 128px - 50px);
+    padding: 10px;
+}
+
+.mat-header-cell {
+    background-color: #3f51b5 !important;
+    color: white !important;
+    font-weight: 500;
+}
+
+.mat-cell {
+    border-bottom: 1px solid #ccc;
+}
+
+.mat-row:hover .mat-cell {
+    background-color: #e3f2fd;
+}
+
+.add-step-container {
+    height: 50px;
+    padding: 5px;
+    text-align: center;
+
+    .button {
+        height: 30px;
+    }
+}
