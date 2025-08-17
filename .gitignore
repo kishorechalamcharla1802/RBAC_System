@@ -1,0 +1,53 @@
+# Build output
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+
+# Visual Studio files
+.vs/
+
+# Rider files
+.idea/
+
+# Debug and logs
+*.pdb
+*.log
+
+# NuGet packages
+*.nupkg
+packages/
+.nuget/
+
+# OS generated files
+Thumbs.db
+.DS_Store
+
+# Others
+*.db
+
+# Node dependencies
+node_modules/
+
+# Build output
+dist/
+out-tsc/
+
+# IDE files
+.vscode/
+.idea/
+
+# Environment files (optional, if you don't want to commit secrets)
+src/environments/*.ts
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Angular specific
+.angular/

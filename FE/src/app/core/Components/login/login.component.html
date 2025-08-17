@@ -1,0 +1,43 @@
+<div class="container">
+    <div *ngIf="!showRegister" class="login-container">
+        <h2>Login</h2>
+        <form (ngSubmit)="login()">
+            <input [(ngModel)]="username" name="username" placeholder="Username" />
+            <input [(ngModel)]="password" name="password" type="password" placeholder="Password" />
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <div *ngIf="!showRegister" class="user-text">
+        <p>New here? <a (click)="showRegister = true">Register now</a> to get started!</p>
+    </div>
+
+    <div *ngIf="showRegister" class="login-container">
+        <h2>Register User</h2>
+        <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+            <input [(ngModel)]="username" name="username" placeholder="Username" required #usernameRef="ngModel" />
+            <div class="error" *ngIf="usernameRef.invalid && usernameRef.touched">
+                Username is required
+            </div>
+            <input [(ngModel)]="password" name="password" type="password" placeholder="Password" required
+                #passwordRef="ngModel" />
+            <div class="error" *ngIf="passwordRef.invalid && passwordRef.touched">
+                Password is required
+            </div>
+            <select [(ngModel)]="role" name="role" placeholder="Role" required #roleRef="ngModel">
+                <option value="" disabled selected>Select role</option>
+                <option *ngFor="let role of roles" [value]="role">
+                    {{ role }}
+                </option>
+            </select>
+            <div class="error" *ngIf="roleRef.invalid && roleRef.touched">
+                Role is required
+            </div>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <div *ngIf="showRegister" class="user-text">
+        <p>Already have an account? <a (click)="showRegister = false">Login here</a></p>
+    </div>
+</div>
