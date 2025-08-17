@@ -12,7 +12,7 @@
 
         <div *ngIf="showDetails" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
             <button type="button" class="btn btn-primary" (click)="logout()">Logout</button>
-            <span>{{userData?.role}}</span>
+            <span>{{userData?.username}} - {{userData?.role}}</span>
         </div>
     </mat-toolbar-row>
 </mat-toolbar>

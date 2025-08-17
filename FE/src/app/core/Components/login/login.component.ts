@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   role = '';
   payload: User = {} as User;
   showRegister: boolean = false;
+  roles: string[] = ['Admin', 'Editor', 'Viewer'];
 
   constructor(
     private http: HttpClient,

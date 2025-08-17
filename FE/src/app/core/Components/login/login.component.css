@@ -66,6 +66,19 @@
   border-color: #3f51b5;
 }
 
+.login-container select {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border 0.3s;
+}
+
+.login-container select:focus {
+  border-color: #3f51b5;
+}
+
 .login-container button {
   padding: 10px;
   font-size: 16px;
